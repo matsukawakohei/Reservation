@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <link href="css/app.css" rel="stylesheet" type="text/css">
-        <title>Laravel</title>
+        <title>マイページ</title>
 
     </head>
     <body>
@@ -21,14 +21,15 @@
   </button>
   
   <div class="collapse navbar-collapse" id="bs-navi">
+    <a href="#" class="navbar-brand h3">テニス壁打ちコート予約サイト</a>
     <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link" href={{ route('index') }}>予約する</a></li>
-      <li class="nav-item"><a class="nav-link" href={{ route('user_page') }}>マイページ</a></li>
+      <li class="nav-item"><a class="nav-link h4" href={{ route('index') }}>予約する</a></li>
+      <li class="nav-item"><a class="nav-link h4" href={{ route('user_page') }}>マイページ</a></li>
     </ul>
   </div>
 </nav>
-    <h3 class='text-center'>{{ $userName }}さんの予約情報</h3>
-    <div class='text-right'>
+    <h3 class='text-center h1'>{{ $userName }}さんの予約情報</h3>
+    <div class='container text-right my-5'>
         <form method='post' action={{ route('search') }}>
             @csrf
             <select name='year'>
@@ -55,46 +56,40 @@
             <input type='submit' value='検索'>
         </form>
     </div>
-    <div class="container text-center my-3">
+    <div class="container-fluid text-center my-5">
     <div class='row'>
-            <div class='col d-flex align-items-center justify-content-center border'>
-                
-            </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 予約日
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 開始時間
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 終了時間
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 変更
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 削除
             </div>
         </div>
         @foreach ($userReserves as $userReserve)
         <div class='row'>
-            <div class='col d-flex align-items-center justify-content-center border'>
-                {{ $count }}
-            </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 {{ date('Y/m/d', strtotime($userReserve->start_time)) }}
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 {{ date('H:i', strtotime($userReserve->start_time)) }}
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
                 {{ date('H:i', strtotime($userReserve->end_time)) }}
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
-                <a href={{ route('edit', ['id' => $userReserve->id, 'start' => date('Y-m-d', strtotime($userReserve->start_time))]) }}>予約を変更する</a>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
+                <a href={{ route('edit', ['id' => $userReserve->id, 'start' => date('Y-m-d', strtotime($userReserve->start_time))]) }}>変更</a>
             </div>
-            <div class='col d-flex align-items-center justify-content-center border'>
-                <a href='#' class='delete' data-id={{ $userReserve->id }}>予約を削除する</a>
+            <div class='col d-flex align-items-center justify-content-center border h3 my-0'>
+                <a href='#' class='delete' data-id={{ $userReserve->id }}>削除</a>
             </div>
         </div>
         @php
